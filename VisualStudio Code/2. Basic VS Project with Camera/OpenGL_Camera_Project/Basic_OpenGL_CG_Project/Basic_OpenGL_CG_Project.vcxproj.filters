@@ -18,7 +18,7 @@
     <ClCompile Include="..\3rdParty\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera3.cpp">
+    <ClCompile Include="Camera2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
