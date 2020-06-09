@@ -24,6 +24,8 @@ glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+float speedModifier = 2.5;
+
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
@@ -254,7 +256,7 @@ void processInput(GLFWwindow *window)
 
 	glm::vec3 cameraRight = glm::normalize(glm::cross(cameraFront, cameraUp));
 
-	float cameraSpeed = 2.5 * deltaTime;
+	float cameraSpeed = speedModifier * deltaTime;
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		cameraPos += cameraSpeed * cameraFront;
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -263,6 +265,14 @@ void processInput(GLFWwindow *window)
 		cameraPos -= cameraSpeed * cameraRight;
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		cameraPos += cameraSpeed * cameraRight;
+
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		if (speedModifier == 2.5)
+			speedModifier = 10;
+		else
+			speedModifier = 2.5;
+	}
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
