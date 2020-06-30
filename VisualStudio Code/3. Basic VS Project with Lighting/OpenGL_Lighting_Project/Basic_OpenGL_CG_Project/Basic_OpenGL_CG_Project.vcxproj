@@ -156,7 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\src\glad.c" />
-    <ClCompile Include="Lighting2.cpp" />
+    <ClCompile Include="Lighting1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
