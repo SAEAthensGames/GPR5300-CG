@@ -36,6 +36,9 @@ bool firstMouse = true;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+bool useReflection = true;
+int timer = 0;
+
 int main()
 {
 	// glfw: initialize and configure
@@ -224,6 +227,7 @@ int main()
 
 		// input
 		// -----
+		timer++;
 		processInput(window);
 
 		// render
@@ -240,6 +244,7 @@ int main()
 		shader.setMat4("view", view);
 		shader.setMat4("projection", projection);
 		shader.setVec3("cameraPos", camera.Position);
+		shader.setBool("useReflection", useReflection);
 		// cubes
 		glBindVertexArray(cubeVAO);
 		glActiveTexture(GL_TEXTURE0);
@@ -282,6 +287,15 @@ int main()
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow *window)
 {
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		if (timer > 60)
+		{
+			useReflection = !useReflection;
+			timer = 0;
+		}
+	}
+
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 

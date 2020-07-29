@@ -185,6 +185,8 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// be sure to activate shader when setting uniforms/drawing objects
+		lightPos = glm::vec3(glm::cos(glfwGetTime()), glm::sin(glfwGetTime()), 2.0f);
+
 		lightingShader.use();
 		lightingShader.setVec3("light.position", lightPos);
 		lightingShader.setVec3("viewPos", camera.Position);
@@ -196,6 +198,7 @@ int main()
 
 		// material properties
 		lightingShader.setFloat("material.shininess", 64.0f);
+		lightingShader.setVec3("material.specModif", 1.5f, 0.5f, 0.5f);
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
